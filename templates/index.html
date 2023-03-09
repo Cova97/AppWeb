@@ -1,4 +1,19 @@
 {% extends 'base.html' %}
 {% block content %} 
-    <h1>Hola</h1>
+<ol>
+    {% for alumnos in response.alumnos %}
+    <li>{{'alumnos.name'}}</li>
+    {% endfor %}
+</ol>
+
+<div>
+    <form method="post">
+        <div>
+            <input type="text" name="mane" id="name" placeholder="write your task">
+        </div>
+        <div>
+            <button type="submit">Add task</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
