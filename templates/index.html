@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
 {% block content %} 
 <div>
-    <h1>hola</h1>
-    {% for t in response.tasks %}
-    {{t.name}}
-    {% endfor %}
+    <ul>
+        <li>
+            <h1>Tareas Completas</h1>
+            {% for t in response.completed %}
+            {{t.name}}
+            {% endfor %}
+        </li>
+    </ul>
+</div>
+
+<div>
+    <ul>
+        <li>
+            <h1>Tareas Incompletas</h1>
+            {% for t in response.incompleted %}
+            {{t.name}}
+            {% endfor %}
+        </li>
+    </ul>
 </div>
 
 <div>
     <form method="post">
         <div>
-            <input type="text" name="mane" id="name" placeholder="write your task">
+            <input type="text" name="name" id="name" placeholder="write your task">
         </div>
         <div>
             <button type="submit">Add task</button>
