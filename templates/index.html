@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %} 
-<ol>
-    {% for alumnos in response.alumnos %}
-    <li>{{'alumnos.name'}}</li>
+<div>
+    <h1>hola</h1>
+    {% for t in response.tasks %}
+    {{t.name}}
     {% endfor %}
-</ol>
+</div>
 
 <div>
     <form method="post">

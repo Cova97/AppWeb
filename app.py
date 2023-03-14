@@ -3,34 +3,49 @@ import requests
 
 app = Flask(__name__)
 
-url = 'https://api-flask-6939.onrender.com/api/alumnos'
+url = 'https://api-flask-g929.onrender.com/items'
 
-app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'GET':
-        alumnos = request.get(url).json()['Alumnos']
+        tasks = requests.get(url).json()
+        print(tasks)
+        response = {'tasks': tasks}
+        return render_template('index.html', response = response)
+    else:
+        abort(505)
+
+if __name__ == "__main__":
+    app.run(debug = True)
+
+"""
+
+
         completed = []
         incompleted = []
-        for task in task:
-            if task['status'] == True:
-                completed.append(task)
+        for item in item:
+            if item['status'] == True:
+                completed.append(item)
             else:
-                incompleted.append(task)
+                incompleted.append(item)
         print(f'COMPLETAS: {completed}')
         print(f'INCOMPLETAS: {incompleted}')
-        #print(alumnos)
+        
         response = {'completed': completed,
                     'incompleted': incompleted,
                     'counter1': len(completed),
                     'counter2': len(incompleted)}
         return render_template('index.html', response = response)
-    else:
-        name = request.form['name']
+
+
+"""
+
+"""
+name = request.form['name']
         try:
             requests.post(url, json={'name': name})
             return redirect('/')
         except:
             return abort(500)
 
-if __name__ == "__mian__":
-    app.run(debug = True)
+"""
