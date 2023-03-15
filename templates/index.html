@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 {% block content %} 
 <div>
-    <ul>
-        <li>
-            <h1>Tareas Completas</h1>
-            {% for t in response.completed %}
-            {{t.name}}
-            {% endfor %}
-        </li>
-    </ul>
+    <h1>Tareas Completas</h1>
+    <ol>
+        {% for t in response.completed %}
+            <li>
+                {{t.name}}
+            </li>
+        {% endfor %}
+    </ol>
 </div>
 
 <div>
-    <ul>
-        <li>
-            <h1>Tareas Incompletas</h1>
-            {% for t in response.incompleted %}
-            {{t.name}}
-            {% endfor %}
-        </li>
-    </ul>
+    <h1>Tareas Incompletas</h1>
+    <ol>
+        {% for t in response.incompleted %}
+            <li>
+                {{t.name}}
+            </li>
+        {% endfor %}
+    </ol>
 </div>
 
 <div>
@@ -28,7 +28,7 @@
             <input type="text" name="name" id="name" placeholder="write your task">
         </div>
         <div>
-            <button type="submit">Add task</button>
+            <button type="submit" id="button"></button>
         </div>
     </form>
 </div>
