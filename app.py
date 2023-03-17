@@ -33,6 +33,19 @@ def home():
         except:
             return abort(500)
 
+""" @app.route('/', methods=['PUT'])
+def update_item():
+    if request.method == 'PUT':
+        update_task = requests.get(url).json()
+        for task in update_task:
+            if task['status'] == False:
+                task['status'] = True
+                return render_template('index.html' , response = response)
+            else:
+                print('Task dont exist...')
+    else:
+        abort(500) """
+
 if __name__ == "__main__":
     app.run(debug = True)
 
