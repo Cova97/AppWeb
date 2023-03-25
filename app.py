@@ -16,8 +16,8 @@ def home():
                 completed.append(task)
             else:
                 incompleted.append(task)
-        print(f'Tareas Completas: {completed}')
-        print(f'Tareas Incompletas: {incompleted}')
+        #print(f'Tareas Completas: {completed}')
+        #print(f'Tareas Incompletas: {incompleted}')
         #print(tasks)
         #response = {'tasks': tasks}
         response = {'completed': completed,
@@ -33,18 +33,24 @@ def home():
         except:
             return abort(500)
 
-""" @app.route('/', methods=['PUT'])
-def update_item():
-    if request.method == 'PUT':
-        update_task = requests.get(url).json()
-        for task in update_task:
-            if task['status'] == False:
-                task['status'] = True
-                return render_template('index.html' , response = response)
-            else:
-                print('Task dont exist...')
-    else:
-        abort(500) """
+@app.route('/update/<int:id>', methods=['GET'])
+def update_item(id):
+    update_task = requests.get(url).json()
+    for task in update_task:
+        if task['id'] == id:
+            #print("LO ENCONTRE")
+            task['status'] = True
+            requests.put(url + '/' + str(id), json={"id": id,  "status": True})
+    return redirect('/')
+
+@app.route('/delete/<int:id>', methods=['GET'])
+def delete_item(id):
+    delete_task = requests.get(url).json()
+    for task in delete_task:
+        if task['id'] == id:
+            #print('simon')
+            requests.delete(url + '/' + str(id))
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug = True)
